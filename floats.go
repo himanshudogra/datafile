@@ -13,7 +13,7 @@ func GetFloats(fileName string) ([3]float64, error) {
 
 	file, err := os.Open(fileName)
 	if err != nil {
-		return err
+		return numbers,err
 	}
 
 	i := 0
@@ -22,7 +22,7 @@ func GetFloats(fileName string) ([3]float64, error) {
 	for scanner.Scan() {
 		numbers[i], err = strconv.ParseFloat(scanner.Text(), 64)
 		if err != nil {
-			return err
+			return numbers,err
 		}
 		i++
 	}
