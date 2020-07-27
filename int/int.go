@@ -3,7 +3,6 @@ package datafile
 
 import (
 	"bufio"
-	"log"
 	"os"
 	"strconv"
 )
@@ -13,7 +12,7 @@ func GetInt(fileName string) ([5]int, error) {
 	var numbers [5]int
 	file, err := os.Open(fileName)
 	if err != nil {
-		log.Fatal(err)
+		return numbers, err
 	}
 
 	i := 0
@@ -21,14 +20,14 @@ func GetInt(fileName string) ([5]int, error) {
 	for scanner.Scan() {
 		numbers[i], err = strconv.Atoi(scanner.Text())
 		if err != nil {
-			log.Fatal(err)
+			return numbers, err
 		}
 		i++
 	}
 
 	err = file.Close()
 	if err != nil {
-		log.Fatal(err)
+		return numbers, err
 	}
 	if scanner.Err() != nil {
 		return numbers, scanner.Err()
