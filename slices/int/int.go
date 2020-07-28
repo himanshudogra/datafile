@@ -13,25 +13,25 @@ func GetInt(fileName string) ([]int, error) {
 
 	file, err := os.Open(fileName)
 	if err != nil {
-		return numbers, err
+		return nil, err
 	}
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		number, err := strconv.Atoi(scanner.Text())
 		if err != nil {
-			return numbers, err
+			return nil, err
 		}
 		numbers = append(numbers, number)
 	}
 
 	err = file.Close()
 	if err != nil {
-		return numbers, err
+		return nil, err
 	}
 
 	if scanner.Err() != nil {
-		return numbers, scanner.Err()
+		return nil, scanner.Err()
 	}
 	return numbers, nil
 }
